@@ -9,22 +9,22 @@ const About: React.FC = () => {
       {/* Intro Section */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div className="relative">
-              <div className="aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl bg-gray-100">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-16 items-center">
+            <div className="relative lg:col-span-1">
+              <div className="aspect-square max-w-sm mx-auto rounded-2xl overflow-hidden shadow-2xl bg-gray-100 border-4 border-white">
                 <img 
                   src="https://assets.cdn.filesafe.space/tM4V4Cv5MRbN7bb35UWw/media/668f72dd0ec0207f28e96fe7.svg" 
                   alt="Dillon Rochon Professional Headshot" 
                   className="w-full h-full object-cover"
                 />
               </div>
-              <div className="absolute -bottom-6 -right-6 bg-[#00A651] p-8 rounded-2xl shadow-xl text-white hidden md:block">
-                <p className="text-4xl font-bold">20+</p>
-                <p className="text-sm uppercase font-bold tracking-widest">Years Professional Exp.</p>
+              <div className="absolute -bottom-4 -right-4 bg-[#00A651] p-4 rounded-xl shadow-xl text-white hidden md:block">
+                <p className="text-2xl font-bold">20+</p>
+                <p className="text-[10px] uppercase font-bold tracking-widest">Years Exp.</p>
               </div>
             </div>
             
-            <div>
+            <div className="lg:col-span-2">
               <SectionHeader 
                 title="Meet Dillon Rochon" 
                 subtitle="Your Southern Alberta Real Estate Professional" 

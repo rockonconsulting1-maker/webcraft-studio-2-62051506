@@ -302,9 +302,10 @@ const MarketAnalysis: React.FC = () => {
                         )}
                       </div>
                     
-                      <ResponsiveContainer width="100%" height="85%">
-                        {viewMode === 'current' ? (
-                          <LineChart data={currentChartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
+                      <div className="h-[300px] w-full">
+                        <ResponsiveContainer width="100%" height="100%">
+                          {viewMode === 'current' ? (
+                            <LineChart data={currentChartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="rgba(255,255,255,0.05)" />
                             <XAxis 
                               dataKey="name" 
@@ -383,7 +384,8 @@ const MarketAnalysis: React.FC = () => {
                             />
                           </AreaChart>
                         )}
-                      </ResponsiveContainer>
+                        </ResponsiveContainer>
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -31,6 +31,14 @@ const CommunityDetail: React.FC<CommunityDetailProps> = ({ communityId, setPage 
           <div className="absolute inset-0 bg-black/50"></div>
         </div>
         <div className="relative z-10 text-center text-white px-4">
+          {parent && (
+            <button 
+              onClick={() => setPage(Page.Community, parent.id)}
+              className="inline-flex items-center text-[#00A651] font-bold mb-4 hover:text-white transition-colors"
+            >
+              <ChevronRight size={16} className="rotate-180 mr-1" /> Back to {parent.name}
+            </button>
+          )}
           <p className="text-[#00A651] font-bold uppercase tracking-widest mb-2">Explore the Area</p>
           <h1 className="text-5xl md:text-7xl font-extrabold mb-4">{community.name}</h1>
           <p className="text-xl max-w-2xl mx-auto text-gray-200">{community.description}</p>
@@ -72,7 +80,17 @@ const CommunityDetail: React.FC<CommunityDetailProps> = ({ communityId, setPage 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
             <div className="lg:col-span-2">
               <SectionHeader title={`About ${community.name}`} centered={false} />
-              <p className="text-lg text-gray-600 mb-12 leading-relaxed">{community.description}</p>
+              <p className="text-lg text-gray-600 mb-8 leading-relaxed">{community.description}</p>
+              
+              {community.highlights && community.highlights.length > 0 && (
+                <div className="flex flex-wrap gap-3 mb-12">
+                  {community.highlights.map((h, i) => (
+                    <span key={i} className="bg-[#002366]/5 text-[#002366] px-4 py-2 rounded-full text-sm font-bold border border-[#002366]/10">
+                      {h}
+                    </span>
+                  ))}
+                </div>
+              )}
               
               <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
                 <div className="bg-gray-50 p-8 rounded-2xl border border-gray-100">
@@ -137,7 +155,7 @@ const CommunityDetail: React.FC<CommunityDetailProps> = ({ communityId, setPage 
                     <iframe 
                       title="map"
                       src={community.mapEmbedUrl} 
-                      className="w-full h-full border-none grayscale opacity-80"
+                      className="w-full h-full border-none opacity-90"
                       allowFullScreen
                     ></iframe>
                   ) : (

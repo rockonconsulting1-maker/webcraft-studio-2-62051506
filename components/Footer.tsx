@@ -36,6 +36,7 @@ const Footer: React.FC<FooterProps> = ({ setPage }) => {
               <li><button onClick={() => setPage(Page.Sellers)} className="hover:text-[#00A651] transition-colors">Seller Services</button></li>
               <li><button onClick={() => setPage(Page.About)} className="hover:text-[#00A651] transition-colors">About Dillon</button></li>
               <li><button onClick={() => setPage(Page.Contact)} className="hover:text-[#00A651] transition-colors">Contact Me</button></li>
+              <li><button onClick={() => setPage(Page.Diagnostics)} className="text-xs opacity-50 hover:opacity-100 transition-opacity">DDF Diagnostics</button></li>
             </ul>
           </div>
 

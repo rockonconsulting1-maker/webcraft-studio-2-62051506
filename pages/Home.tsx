@@ -51,6 +51,19 @@ const Home: React.FC<HomeProps> = ({ setPage }) => {
             </button>
           </div>
         </div>
+
+        {/* Floating Headshot in Hero - Bottom Right, Background Style */}
+        <div className="absolute bottom-0 right-0 z-10 hidden lg:block animate-in slide-in-from-right duration-1000">
+          <div className="relative">
+            <div className="w-64 h-64 md:w-80 md:h-80 overflow-hidden">
+              <img 
+                src="https://assets.cdn.filesafe.space/tM4V4Cv5MRbN7bb35UWw/media/668f72dd0ec0207f28e96fe7.svg" 
+                alt="Dillon Rochon" 
+                className="w-full h-full object-cover opacity-90 grayscale-[20%] hover:grayscale-0 transition-all duration-700"
+              />
+            </div>
+          </div>
+        </div>
         
         {/* Scroll Indicator */}
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
@@ -127,7 +140,7 @@ const Home: React.FC<HomeProps> = ({ setPage }) => {
             </button>
           </div>
           
-          <ListingGrid limit={3} />
+          <ListingGrid limit={6} />
         </div>
       </section>
 

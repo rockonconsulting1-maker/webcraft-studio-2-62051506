@@ -54,7 +54,7 @@ const Navbar: React.FC<NavbarProps> = ({ currentPage, setPage }) => {
                 Communities <ChevronDown size={14} className="ml-1" />
               </button>
               {showCommunities && (
-                <div className="absolute top-full left-0 bg-white shadow-2xl rounded-xl py-2 w-56 animate-fade-in border border-gray-100 mt-2">
+                <div className="absolute top-full left-0 bg-white shadow-2xl rounded-xl py-2 w-56 animate-fade-in border border-gray-100">
                   {communities.map(c => (
                     <button 
                       key={c.id} 

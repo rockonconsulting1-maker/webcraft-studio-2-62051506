@@ -8,8 +8,18 @@ export interface Listing {
   baths: number;
   sqft: number;
   imageUrl: string;
-  type: 'Residential' | 'Acreage' | 'Commercial' | 'Investment';
+  type: string;
+  propertyType?: string;
   featured?: boolean;
+  remarks?: string;
+  lotSize?: string;
+  yearBuilt?: number;
+  mlsNumber?: string;
+  images?: string[];
+  postalCode?: string;
+  province?: string;
+  condoType?: string;
+  features?: string[];
 }
 
 export interface Testimonial {
@@ -48,5 +58,6 @@ export enum Page {
   Sellers = 'Sellers',
   Listings = 'Listings',
   Contact = 'Contact',
-  Community = 'Community'
+  Community = 'Community',
+  Diagnostics = 'Diagnostics'
 }

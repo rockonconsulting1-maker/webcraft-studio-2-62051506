@@ -10,6 +10,7 @@ import Sellers from './pages/Sellers';
 import Listings from './pages/Listings';
 import Contact from './pages/Contact';
 import CommunityDetail from './pages/CommunityDetail';
+import Diagnostics from './pages/Diagnostics';
 import { MessageSquare, Phone } from 'lucide-react';
 
 const App: React.FC = () => {
@@ -20,6 +21,16 @@ const App: React.FC = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [currentPage, activeCommunityId]);
+
+  useEffect(() => {
+    const handleCustomPageChange = (e: any) => {
+      if (e.detail?.page) {
+        handlePageChange(e.detail.page as Page);
+      }
+    };
+    window.addEventListener('change-page', handleCustomPageChange);
+    return () => window.removeEventListener('change-page', handleCustomPageChange);
+  }, []);
 
   const handlePageChange = (page: Page, communityId?: string) => {
     if (communityId) {
@@ -39,6 +50,7 @@ const App: React.FC = () => {
       case Page.Listings: return <Listings />;
       case Page.Contact: return <Contact />;
       case Page.Community: return <CommunityDetail communityId={activeCommunityId} setPage={handlePageChange} />;
+      case Page.Diagnostics: return <Diagnostics />;
       default: return <Home setPage={handlePageChange} />;
     }
   };

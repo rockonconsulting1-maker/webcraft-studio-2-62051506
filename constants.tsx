@@ -96,11 +96,11 @@ export const COMMUNITIES: Record<string, CommunityData> = {
   },
   'lundbreck': {
     id: 'lundbreck',
-    name: 'Lethbridge',
+    name: 'Lundbreck',
     parentCommunityId: 'pincher-creek',
     description: 'A small hamlet perfectly situated near the beautiful Lundbreck Falls and the Cowboy Trail.',
     heroImage: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=1600',
-    mapEmbedUrl: '',
+    mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10287.123456789!2d-114.15!3d49.58!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x536e800000000000%3A0x0!2sLundbreck%2C%20AB!5e0!3m2!1sen!2sca!4v1700000000000!5m2!1sen!2sca',
     highlights: ['Lundbreck Falls', 'Fly Fishing Paradise', 'Gateway to Crowsnest Pass'],
     eat: [{ name: 'Oldman River Brewing', description: 'Craft beer and elevated pub fare in the heart of Lundbreck.', link: 'https://oldmanriverbrewing.com', phone: '403-628-2122' }],
     do: [{ name: 'Lundbreck Falls', description: 'Stunning double waterfall on the Crowsnest River.', phone: '403-627-1122' }]
@@ -112,42 +112,66 @@ export const COMMUNITIES: Record<string, CommunityData> = {
     name: 'Blairmore',
     parentCommunityId: 'crowsnest-pass',
     description: 'The administrative and commercial hub of Crowsnest Pass, nestled directly under the shadow of Turtle Mountain.',
-    heroImage: '', mapEmbedUrl: '', highlights: ['Commercial Hub', 'Historic Downtown', 'Access to Pass Powderkeg'],
-    eat: [{ name: 'The Cherry on Top', description: 'Local ice cream shop and social hub.', phone: '403-562-2824' }],
-    do: []
+    heroImage: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=1600', 
+    mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10260.0!2d-114.43!3d49.61!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x536ee00000000000%3A0x0!2sBlairmore%2C%20AB!5e0!3m2!1sen!2sca!4v1700000000000!5m2!1sen!2sca', 
+    highlights: ['Commercial Hub', 'Historic Downtown', 'Access to Pass Powderkeg'],
+    eat: [
+      { name: 'The Cherry on Top', description: 'Local ice cream shop and social hub.', phone: '403-562-2824' },
+      { name: 'Stone\'s Throw Cafe', description: 'Organic coffee and artisanal sandwiches.', phone: '403-562-2330' }
+    ],
+    do: [
+      { name: 'Pass Powderkeg Ski Area', description: 'Family-friendly skiing and mountain biking.', link: 'https://passpowderkeg.com' },
+      { name: 'Crowsnest Museum', description: 'Explore the rich history of the Pass.', link: 'https://crowsnestmuseum.ca' }
+    ]
   },
   'coleman': {
     id: 'coleman',
     name: 'Coleman',
     parentCommunityId: 'crowsnest-pass',
     description: 'National Historic Site status marks Coleman as a town that preserves its coal mining heritage better than almost any other.',
-    heroImage: '', mapEmbedUrl: '', highlights: ['Historic District', 'Flier Mine Site', 'Gateway to BC'],
-    eat: [{ name: 'Chris\' Restaurant', description: 'A staple for breakfast and traditional diner fare.', phone: '403-563-3053' }],
-    do: []
+    heroImage: 'https://images.unsplash.com/photo-1510672981848-a1c4f1cb5ccf?auto=format&fit=crop&q=80&w=1600', 
+    mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10261.0!2d-114.5!3d49.63!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x536ee00000000000%3A0x0!2sColeman%2C%20AB!5e0!3m2!1sen!2sca!4v1700000000000!5m2!1sen!2sca', 
+    highlights: ['Historic District', 'Flier Mine Site', 'Gateway to BC'],
+    eat: [
+      { name: 'Chris\' Restaurant', description: 'A staple for breakfast and traditional diner fare.', phone: '403-563-3053' },
+      { name: 'Crowsnest Coffee Company', description: 'Freshly roasted coffee in a historic setting.', link: 'https://crowsnestcoffee.ca' }
+    ],
+    do: [
+      { name: 'Star Creek Falls', description: 'A beautiful hike leading to a hidden waterfall.', phone: '403-562-8833' }
+    ]
   },
   'hillcrest': {
     id: 'hillcrest',
     name: 'Hillcrest',
     parentCommunityId: 'crowsnest-pass',
     description: 'A quiet residential community in the Crowsnest Pass, known for its history and scenic mountain backdrop.',
-    heroImage: '', mapEmbedUrl: '', highlights: ['Residential Peace', 'Mountain Views', 'Historic Mines'],
-    eat: [], do: []
+    heroImage: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=1600', 
+    mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10262.0!2d-114.38!3d49.59!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x536ee00000000000%3A0x0!2sHillcrest%2C%20AB!5e0!3m2!1sen!2sca!4v1700000000000!5m2!1sen!2sca', 
+    highlights: ['Residential Peace', 'Mountain Views', 'Historic Mines'],
+    eat: [{ name: 'Hillcrest Miners Club', description: 'A historic social club with a welcoming atmosphere.', phone: '403-562-2544' }],
+    do: [{ name: 'Hillcrest Mine Disaster Memorial', description: 'A solemn site honoring the 189 miners lost in 1914.', phone: '403-562-7388' }]
   },
   'bellevue': {
     id: 'bellevue',
     name: 'Bellevue',
     parentCommunityId: 'crowsnest-pass',
     description: 'Home to the Bellevue Underground Mine tour, this community offers a deep dive into the region\'s mining history.',
-    heroImage: '', mapEmbedUrl: '', highlights: ['Bellevue Underground Mine', 'Historic Main Street', 'Scenic Vistas'],
-    eat: [], do: []
+    heroImage: 'https://images.unsplash.com/photo-1544161515-4ad6ce6cd692?auto=format&fit=crop&q=80&w=1600', 
+    mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10263.0!2d-114.35!3d49.58!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x536ee00000000000%3A0x0!2sBellevue%2C%20AB!5e0!3m2!1sen!2sca!4v1700000000000!5m2!1sen!2sca', 
+    highlights: ['Bellevue Underground Mine', 'Historic Main Street', 'Scenic Vistas'],
+    eat: [{ name: 'Old Dairy Ice Cream Shop', description: 'Famous for its massive scoops and historic building.', phone: '403-564-4222' }],
+    do: [{ name: 'Bellevue Underground Mine Tour', description: 'Experience the life of a coal miner.', link: 'https://bellevuemine.com', phone: '403-564-4700' }]
   },
   'frank': {
     id: 'frank',
     name: 'Frank',
     parentCommunityId: 'crowsnest-pass',
     description: 'The site of the famous Frank Slide, Canada\'s deadliest rockslide, now a place of remembrance and geological wonder.',
-    heroImage: '', mapEmbedUrl: '', highlights: ['Frank Slide', 'Interpretive Centre', 'Geological History'],
-    eat: [], do: []
+    heroImage: 'https://images.unsplash.com/photo-1589136777351-fdc9c99bc03a?auto=format&fit=crop&q=80&w=1600', 
+    mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10264.0!2d-114.4!3d49.6!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x536ee00000000000%3A0x0!2sFrank%2C%20AB!5e0!3m2!1sen!2sca!4v1700000000000!5m2!1sen!2sca', 
+    highlights: ['Frank Slide', 'Interpretive Centre', 'Geological History'],
+    eat: [],
+    do: [{ name: 'Frank Slide Interpretive Centre', description: 'Award-winning museum and walking trails.', link: 'https://frankslide.ca', phone: '403-562-7388' }]
   },
 
   // --- SUB-COMMUNITIES: Lethbridge ---
@@ -156,22 +180,61 @@ export const COMMUNITIES: Record<string, CommunityData> = {
     name: 'West Lethbridge',
     parentCommunityId: 'lethbridge',
     description: 'The fastest-growing sector of the city, West Lethbridge is home to the University and many modern residential communities.',
-    heroImage: '', mapEmbedUrl: '',
+    heroImage: 'https://images.unsplash.com/photo-1629904853716-f0bc54eba481?auto=format&fit=crop&q=80&w=1600', 
+    mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10267.0!2d-112.9!3d49.68!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x536e600000000000%3A0x0!2sWest%20Lethbridge%2C%20AB!5e0!3m2!1sen!2sca!4v1700000000000!5m2!1sen!2sca',
     highlights: ['University of Lethbridge', 'Modern Neighborhoods', 'Extensive Parks'],
     eat: [{ name: 'Firestone Restaurant and Bar', description: 'Upscale casual with a great patio.', phone: '403-329-3473' }],
     do: [{ name: 'Nicholas Sheran Park', description: 'Lethbridge\'s premier disc golf and multi-use park.', phone: '403-320-3020' }],
     schools: [
       { name: 'University of Lethbridge', description: 'Global research university.' },
       { name: 'Coalbanks Elementary', description: 'Highly rated public school in Copperwood.' }
-    ]
+    ],
+    subCommunities: ['copperwood', 'riverstone']
+  },
+  'copperwood': {
+    id: 'copperwood',
+    name: 'Copperwood',
+    parentCommunityId: 'west-lethbridge',
+    description: 'A family-oriented community in West Lethbridge known for its parks, trails, and modern amenities.',
+    heroImage: '', mapEmbedUrl: '', highlights: ['Family Friendly', 'Modern Homes', 'Walking Trails'],
+    eat: [], do: []
+  },
+  'riverstone': {
+    id: 'riverstone',
+    name: 'Riverstone',
+    parentCommunityId: 'west-lethbridge',
+    description: 'An established West Lethbridge neighborhood with beautiful landscaping and proximity to the coulees.',
+    heroImage: '', mapEmbedUrl: '', highlights: ['Established Beauty', 'Coulee Access', 'Quiet Streets'],
+    eat: [], do: []
   },
   'south-lethbridge': {
     id: 'south-lethbridge',
     name: 'South Lethbridge',
     parentCommunityId: 'lethbridge',
     description: 'The historic heart of the city, featuring mature trees, the downtown core, and the beautiful Henderson Lake Park.',
-    heroImage: '', mapEmbedUrl: '',
+    heroImage: 'https://images.unsplash.com/photo-1629904853716-f0bc54eba481?auto=format&fit=crop&q=80&w=1600', 
+    mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10265.0!2d-112.82!3d49.68!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x536e600000000000%3A0x0!2sSouth%20Lethbridge%2C%20AB!5e0!3m2!1sen!2sca!4v1700000000000!5m2!1sen!2sca', 
     highlights: ['Henderson Lake', 'Downtown Lethbridge', 'Mature Neighborhoods'],
+    eat: [
+      { name: 'Mocha Cabana', description: 'Farm-to-table excellence downtown.', link: 'https://mochacabana.ca' },
+      { name: 'The Owl Acoustic Lounge', description: 'Live music and great food.', link: 'https://theowlacousticlounge.ca' }
+    ],
+    do: [
+      { name: 'Henderson Lake Park', description: 'Lethbridge\'s premier urban park.', phone: '403-320-3020' },
+      { name: 'Nikka Yuko Japanese Garden', description: 'Tranquility and culture.', link: 'https://nikkayuko.com' }
+    ],
+    schools: [
+      { name: 'Lethbridge Collegiate Institute', description: 'Historic high school with strong academics.' },
+      { name: 'Fleetwood-Bawden Elementary', description: 'Respected neighborhood elementary school.' }
+    ],
+    subCommunities: ['london-road']
+  },
+  'london-road': {
+    id: 'london-road',
+    name: 'London Road',
+    parentCommunityId: 'south-lethbridge',
+    description: 'One of Lethbridge\'s most historic neighborhoods, featuring stunning heritage homes and mature tree-lined streets.',
+    heroImage: '', mapEmbedUrl: '', highlights: ['Heritage Homes', 'Mature Trees', 'Walkable'],
     eat: [], do: []
   },
   'north-lethbridge': {
@@ -179,8 +242,37 @@ export const COMMUNITIES: Record<string, CommunityData> = {
     name: 'North Lethbridge',
     parentCommunityId: 'lethbridge',
     description: 'A diverse area with strong community roots, featuring many parks and the scenic Pavan Park along the river.',
-    heroImage: '', mapEmbedUrl: '',
+    heroImage: 'https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&q=80&w=1600', 
+    mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10266.0!2d-112.85!3d49.72!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x536e600000000000%3A0x0!2sNorth%20Lethbridge%2C%20AB!5e0!3m2!1sen!2sca!4v1700000000000!5m2!1sen!2sca', 
     highlights: ['Pavan Park', 'Community Spirit', 'Diverse Housing'],
+    eat: [
+      { name: 'Italian Table', description: 'Family-style Italian dining.', link: 'https://italiantable.ca' },
+      { name: 'Luigi\'s North', description: 'A local favorite for steak and pizza.', phone: '403-328-1111' }
+    ],
+    do: [
+      { name: 'Pavan Park', description: 'Extensive trail system along the Oldman River.', phone: '403-320-3020' },
+      { name: 'Legacy Park', description: 'Lethbridge\'s newest major park with a spray park and skate park.', phone: '403-320-3020' }
+    ],
+    schools: [
+      { name: 'Winston Churchill High School', description: 'Known for its International Baccalaureate program.' },
+      { name: 'St. Teresa of Calcutta', description: 'Modern Catholic elementary school.' }
+    ],
+    subCommunities: ['legacy-ridge', 'uplands']
+  },
+  'legacy-ridge': {
+    id: 'legacy-ridge',
+    name: 'Legacy Ridge',
+    parentCommunityId: 'north-lethbridge',
+    description: 'A newer North Lethbridge community with great views of the coulees and easy access to Legacy Park.',
+    heroImage: '', mapEmbedUrl: '', highlights: ['Newer Homes', 'Coulee Views', 'Legacy Park Access'],
+    eat: [], do: []
+  },
+  'uplands': {
+    id: 'uplands',
+    name: 'Uplands',
+    parentCommunityId: 'north-lethbridge',
+    description: 'A well-established North Lethbridge neighborhood with a variety of housing options and many parks.',
+    heroImage: '', mapEmbedUrl: '', highlights: ['Established', 'Diverse Housing', 'Parks'],
     eat: [], do: []
   },
 
@@ -188,9 +280,9 @@ export const COMMUNITIES: Record<string, CommunityData> = {
   'md-pincher-creek': {
     id: 'md-pincher-creek',
     name: 'MD of Pincher Creek',
-    description: 'A diverse municipal district covering mountain peaks, foothills, and fertile plains.',
+    description: 'A diverse municipal district covering mountain peaks, foothills, and fertile plains. It offers some of the most stunning ranch land in Alberta.',
     heroImage: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&q=80&w=1600',
-    mapEmbedUrl: '',
+    mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10284.0!2d-113.9!3d49.4!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x536e700000000000%3A0x0!2sMD%20of%20Pincher%20Creek%2C%20AB!5e0!3m2!1sen!2sca!4v1700000000000!5m2!1sen!2sca',
     highlights: ['Beaver Mines', 'Twin Butte', 'Oldman River Basin'],
     eat: [{ name: 'Twin Butte Country Store', description: 'Legendary Mexican food and live music in the foothills.', phone: '403-627-4035' }],
     do: [{ name: 'Castle Provincial Park', description: 'Vast wilderness for hiking and fishing.', phone: '403-627-1132' }]
@@ -198,16 +290,22 @@ export const COMMUNITIES: Record<string, CommunityData> = {
   'md-willow-creek': {
     id: 'md-willow-creek',
     name: 'MD of Willow Creek',
-    description: 'Bordering the foothills of the Rockies, this district is rich in ranching history.',
-    heroImage: '', mapEmbedUrl: '', highlights: ['Stavely', 'Claresholm', 'Granum'],
-    eat: [], do: []
+    description: 'Bordering the foothills of the Rockies, this district is rich in ranching history and home to the famous Head-Smashed-In Buffalo Jump.',
+    heroImage: 'https://images.unsplash.com/photo-1544161515-4ad6ce6cd692?auto=format&fit=crop&q=80&w=1600', 
+    mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10285.0!2d-113.6!3d49.9!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x536e000000000000%3A0x0!2sMD%20of%20Willow%20Creek%2C%20AB!5e0!3m2!1sen!2sca!4v1700000000000!5m2!1sen!2sca', 
+    highlights: ['Stavely', 'Claresholm', 'Head-Smashed-In Buffalo Jump'],
+    eat: [{ name: 'The Station', description: 'Classic diner food in a historic railway station in Claresholm.', phone: '403-625-2333' }],
+    do: [{ name: 'Head-Smashed-In Buffalo Jump', description: 'UNESCO World Heritage site documenting 6,000 years of history.', link: 'https://headsmashedin.ca' }]
   },
   'lethbridge-county': {
     id: 'lethbridge-county',
     name: 'Lethbridge County',
-    description: 'The agricultural powerhouse of Southern Alberta, surrounding the city of Lethbridge.',
-    heroImage: '', mapEmbedUrl: '', highlights: ['Coaldale', 'Coalhurst', 'Intensive Agriculture'],
-    eat: [], do: []
+    description: 'The agricultural powerhouse of Southern Alberta, surrounding the city of Lethbridge with fertile fields and thriving towns.',
+    heroImage: 'https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=1600', 
+    mapEmbedUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10286.0!2d-112.8!3d49.7!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x536e000000000000%3A0x0!2sLethbridge%20County%2C%20AB!5e0!3m2!1sen!2sca!4v1700000000000!5m2!1sen!2sca', 
+    highlights: ['Coaldale', 'Coalhurst', 'Birds of Prey Centre'],
+    eat: [{ name: 'The Coaldale Bakery', description: 'Famous for its traditional Dutch pastries and fresh bread.', phone: '403-345-3322' }],
+    do: [{ name: 'Alberta Birds of Prey Centre', description: 'Canada\'s largest birds of prey facility.', link: 'https://burrowingowl.com' }]
   }
 };
 
