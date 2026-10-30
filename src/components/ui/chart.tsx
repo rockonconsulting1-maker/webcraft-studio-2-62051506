@@ -92,16 +92,41 @@ ${colorConfig
 
 const ChartTooltip = RechartsPrimitive.Tooltip;
 
+type TooltipPayload = ReadonlyArray<
+  // recharts passes each series' data point here; the shape is chart-specific so
+  // loosen it to an indexable record and cast where fields are read.
+  Record<string, unknown> & {
+    name?: string;
+    value?: number | string;
+    dataKey?: string | number;
+    color?: string;
+    payload?: Record<string, unknown>;
+    type?: string;
+  }
+>;
+
 const ChartTooltipContent = React.forwardRef<
   HTMLDivElement,
-  React.ComponentProps<typeof RechartsPrimitive.Tooltip> &
-    React.ComponentProps<"div"> & {
-      hideLabel?: boolean;
-      hideIndicator?: boolean;
-      indicator?: "line" | "dot" | "dashed";
-      nameKey?: string;
-      labelKey?: string;
-    }
+  Omit<React.ComponentProps<"div">, "label"> & {
+    active?: boolean;
+    payload?: TooltipPayload;
+    label?: React.ReactNode;
+    labelFormatter?: (value: React.ReactNode, payload: TooltipPayload) => React.ReactNode;
+    labelClassName?: string;
+    formatter?: (
+      value: number | string,
+      name: string,
+      item: TooltipPayload[number],
+      index: number,
+      payload: Record<string, unknown>,
+    ) => React.ReactNode;
+    color?: string;
+    nameKey?: string;
+    labelKey?: string;
+    hideLabel?: boolean;
+    hideIndicator?: boolean;
+    indicator?: "line" | "dot" | "dashed";
+  }
 >(
   (
     {
@@ -240,13 +265,23 @@ ChartTooltipContent.displayName = "ChartTooltip";
 
 const ChartLegend = RechartsPrimitive.Legend;
 
+type LegendPayload = ReadonlyArray<
+  Record<string, unknown> & {
+    value?: string;
+    dataKey?: string | number;
+    color?: string;
+    type?: string;
+  }
+>;
+
 const ChartLegendContent = React.forwardRef<
   HTMLDivElement,
-  React.ComponentProps<"div"> &
-    Pick<RechartsPrimitive.LegendProps, "payload" | "verticalAlign"> & {
-      hideIcon?: boolean;
-      nameKey?: string;
-    }
+  React.ComponentProps<"div"> & {
+    payload?: LegendPayload;
+    verticalAlign?: "top" | "middle" | "bottom";
+    nameKey?: string;
+    hideIcon?: boolean;
+  }
 >(({ className, hideIcon = false, payload, verticalAlign = "bottom", nameKey }, ref) => {
   const { config } = useChart();
 
