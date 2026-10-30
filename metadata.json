@@ -1,0 +1,7 @@
+{
+  "name": "Dillon Rochon Real Estate",
+  "description": "A premium, high-conversion real estate website for Dillon Rochon, specializing in Southern Alberta with 2% Realty Lethbridge's full-service, low-commission model.",
+  "requestFramePermissions": [
+    "geolocation"
+  ]
+}
