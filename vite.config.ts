@@ -4,10 +4,9 @@ import react from '@vitejs/plugin-react';
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, '.', '');
-  const config = {
+  return {
     server: {
-      allowedHosts: true as const,
-      watch: { aggregateTimeout: 2000 },
+      allowedHosts: true,
       port: 3000,
       host: '0.0.0.0',
     },
@@ -22,5 +21,4 @@ export default defineConfig(({ mode }) => {
       },
     },
   };
-  return config;
 });
