@@ -77,15 +77,33 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "AI Studio App" },
-      { name: "description", content: "AI Studio Generated Project" },
-      { name: "author", content: "AI Studio" },
-      { property: "og:title", content: "AI Studio App" },
-      { property: "og:description", content: "AI Studio Generated Project" },
+      { title: "Ember — Analytics for fast-moving teams" },
+      {
+        name: "description",
+        content:
+          "Ember turns raw product data into clear, actionable insight. Real-time analytics, beautiful dashboards, and answers in seconds — not sprints.",
+      },
+      { name: "author", content: "Ember" },
+      { property: "og:title", content: "Ember — Analytics for fast-moving teams" },
+      {
+        property: "og:description",
+        content:
+          "Ember turns raw product data into clear, actionable insight. Real-time analytics, beautiful dashboards, and answers in seconds.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      {
+        rel: "preconnect",
+        href: "https://fonts.gstatic.com",
+        crossOrigin: "anonymous",
+      },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Work+Sans:wght@300;400;500;600;700&display=swap",
+      },
       {
         rel: "stylesheet",
         href: appCss,
