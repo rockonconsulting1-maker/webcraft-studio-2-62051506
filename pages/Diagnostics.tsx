@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import SectionHeader from '../components/SectionHeader';
 import { ShieldCheck, ShieldAlert, Loader2, RefreshCw, Key, Database, Globe } from 'lucide-react';
+import { getDdfTest } from '../lib/ddf.functions';
 
 const Diagnostics: React.FC = () => {
   const [loading, setLoading] = useState(false);
@@ -12,8 +13,7 @@ const Diagnostics: React.FC = () => {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetch('/api/ddf-test');
-      const data = await response.json();
+      const data = await getDdfTest();
       setResults(data);
       if (data.status === 'error') {
         setError(data.error || 'Diagnostic test failed');

@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Listing } from '../types';
 import { MapPin, Bed, Bath, Square, ExternalLink, Loader2, Filter, X, ChevronDown, Calendar, Hash, Info } from 'lucide-react';
+import { getListings } from '../lib/ddf.functions';
 
 interface ListingGridProps {
   limit?: number;
@@ -204,112 +205,89 @@ const ListingGrid: React.FC<ListingGridProps> = ({ limit, agentId, title }) => {
       setLoading(true);
       setIsSearching(true);
       setApiWarning(null);
-      
-      // Build query params
-      const buildParams = (useFilters: boolean, useAgent: boolean) => {
-        const params = new URLSearchParams();
+
+      // Build the params object consumed by the DDF server function.
+      const buildParams = (useFilters: boolean, useAgent: boolean): Record<string, any> => {
+        const params: Record<string, any> = {};
         if (useFilters) {
           if (searchFilters.city.length > 0 && !searchFilters.city.includes('All')) {
-            params.append('city', searchFilters.city.join(','));
+            params.city = searchFilters.city.join(',');
           }
           if (searchFilters.type.length > 0 && !searchFilters.type.includes('All')) {
-            params.append('propertyType', searchFilters.type.join(','));
+            params.propertyType = searchFilters.type.join(',');
           }
           if (searchFilters.subType.length > 0 && !searchFilters.subType.includes('All')) {
-            params.append('propertySubType', searchFilters.subType.join(','));
+            params.propertySubType = searchFilters.subType.join(',');
           }
           if (searchFilters.excludeType.length > 0) {
-            params.append('excludeType', searchFilters.excludeType.join(','));
+            params.excludeType = searchFilters.excludeType.join(',');
           }
           if (searchFilters.condoType.length > 0 && !searchFilters.condoType.includes('All')) {
-            params.append('condoType', searchFilters.condoType.join(','));
+            params.condoType = searchFilters.condoType.join(',');
           }
           if (searchFilters.features.length > 0) {
-            params.append('features', searchFilters.features.join(','));
+            params.features = searchFilters.features.join(',');
           }
-          if (searchFilters.minPrice) params.append('minPrice', unformatNumber(searchFilters.minPrice));
-          if (searchFilters.maxPrice) params.append('maxPrice', unformatNumber(searchFilters.maxPrice));
-          if (searchFilters.beds !== 'Any') params.append('beds', searchFilters.beds);
-          if (searchFilters.baths !== 'Any') params.append('baths', searchFilters.baths);
-          if (searchFilters.minSqft) params.append('minSqft', unformatNumber(searchFilters.minSqft));
+          if (searchFilters.minPrice) params.minPrice = unformatNumber(searchFilters.minPrice);
+          if (searchFilters.maxPrice) params.maxPrice = unformatNumber(searchFilters.maxPrice);
+          if (searchFilters.beds !== 'Any') params.beds = searchFilters.beds;
+          if (searchFilters.baths !== 'Any') params.baths = searchFilters.baths;
+          if (searchFilters.minSqft) params.minSqft = unformatNumber(searchFilters.minSqft);
         }
         if (useAgent && agentId) {
-          params.append('agentId', agentId);
+          params.agentId = agentId;
         }
         if (limit) {
-          params.append('top', limit.toString());
+          params.top = limit.toString();
         }
-        return params.toString();
+        return params;
       };
 
       // 1. Fetch priority listings (agent's) if agentId is provided
       let priorityListings: Listing[] = [];
       if (agentId) {
-        const priorityUrl = `/api/listings?${buildParams(false, true)}`;
-        const response = await fetch(priorityUrl);
-        if (response.ok) {
-          const data = await response.json();
-          priorityListings = (data.value || []).map(mapDDFToListing);
-        } else {
-          throw response;
-        }
-        
+        const data: any = await getListings({ data: buildParams(false, true) });
+        priorityListings = (data.value || []).map(mapDDFToListing);
+
         // Fallback: If no listings found by primary ID, try the National Association ID (1016804)
         if (priorityListings.length === 0 && agentId === '1394321') {
-          const fallbackUrl = `/api/listings?agentId=1016804&${buildParams(false, false)}`;
-          const fallbackResponse = await fetch(fallbackUrl);
-          if (fallbackResponse.ok) {
-            const fallbackData = await fallbackResponse.json();
-            priorityListings = (fallbackData.value || []).map(mapDDFToListing);
-          } else {
-            throw fallbackResponse;
-          }
+          const fallbackData: any = await getListings({ data: { ...buildParams(false, false), agentId: '1016804' } });
+          priorityListings = (fallbackData.value || []).map(mapDDFToListing);
         }
       }
 
       // 2. Fetch general listings to fill the gap or for general search
       let generalListings: Listing[] = [];
-      const hasSearchFilters = searchFilters.city.length > 0 && !searchFilters.city.includes('All') ||
-                               searchFilters.type.length > 0 && !searchFilters.type.includes('All') ||
-                               searchFilters.subType.length > 0 && !searchFilters.subType.includes('All') ||
-                               searchFilters.excludeType.length > 0 ||
-                               searchFilters.condoType.length > 0 && !searchFilters.condoType.includes('All') ||
-                               searchFilters.features.length > 0 ||
-                               searchFilters.minPrice || searchFilters.maxPrice ||
-                               searchFilters.beds !== 'Any' || searchFilters.baths !== 'Any' ||
-                               searchFilters.minSqft;
+      const hasSearchFilters =
+        (searchFilters.city.length > 0 && !searchFilters.city.includes('All')) ||
+        (searchFilters.type.length > 0 && !searchFilters.type.includes('All')) ||
+        (searchFilters.subType.length > 0 && !searchFilters.subType.includes('All')) ||
+        searchFilters.excludeType.length > 0 ||
+        (searchFilters.condoType.length > 0 && !searchFilters.condoType.includes('All')) ||
+        searchFilters.features.length > 0 ||
+        !!searchFilters.minPrice || !!searchFilters.maxPrice ||
+        searchFilters.beds !== 'Any' || searchFilters.baths !== 'Any' ||
+        !!searchFilters.minSqft;
 
       if (!agentId || hasSearchFilters || (limit && priorityListings.length < limit)) {
-        // Always use filters if they are provided, even if there is a limit
-        const paramsStr = buildParams(true, false);
-        const generalUrl = `/api/listings?${paramsStr}`;
-        console.log('[ListingGrid] Fetching General Listings:', generalUrl);
-        
-        const response = await fetch(generalUrl);
-        if (response.ok) {
-          const data = await response.json();
-          console.log('[ListingGrid] General Listings Response:', {
-            count: data.value?.length || 0,
-            totalCount: data['@odata.count'],
-            debugFilter: data.debugFilter,
-            warning: data.warning
-          });
-          
-          if (data.warning) {
-            setApiWarning(data.warning);
-          }
-          generalListings = (data.value || []).map(mapDDFToListing);
-        } else {
-          const errorText = await response.text();
-          console.error('[ListingGrid] General Listings Fetch Failed:', response.status, errorText);
-          throw new Error(`API Error: ${response.status} ${response.statusText}`);
+        const data: any = await getListings({ data: buildParams(true, false) });
+        console.log('[ListingGrid] General Listings Response:', {
+          count: data.value?.length || 0,
+          totalCount: data['@odata.count'],
+          debugFilter: data.debugFilter,
+          warning: data.warning,
+        });
+
+        if (data.warning) {
+          setApiWarning(data.warning);
         }
+        generalListings = (data.value || []).map(mapDDFToListing);
       }
 
       // 3. Combine and remove duplicates
       const combined = [...priorityListings];
       const seenIds = new Set(combined.map(l => l.id));
-      
+
       for (const listing of generalListings) {
         if (!seenIds.has(listing.id)) {
           combined.push(listing);
@@ -322,21 +300,9 @@ const ListingGrid: React.FC<ListingGridProps> = ({ limit, agentId, title }) => {
       setError(null);
     } catch (err: any) {
       console.error('Error fetching listings:', err);
-      let errorDetails = err.message;
-      
-      // Try to parse more details if it's a fetch error with a response
-      if (err instanceof Response) {
-        try {
-          const data = await err.json();
-          errorDetails = JSON.stringify(data, null, 2);
-        } catch (e) {
-          // Ignore parse error
-        }
-      }
-
-      setError({ 
+      setError({
         message: 'Unable to load listings at this time.',
-        details: errorDetails 
+        details: err?.message,
       });
     } finally {
       setLoading(false);
@@ -507,11 +473,10 @@ const ListingGrid: React.FC<ListingGridProps> = ({ limit, agentId, title }) => {
           <button 
             onClick={() => {
               console.log('Current Filters State:', filters);
-              fetch('/api/listings').then(async r => {
-                const data = await r.json();
+              getListings({ data: {} }).then((data: any) => {
                 console.log('Diagnostic API Response:', data);
                 alert('Diagnostic data logged to console. Please check browser developer tools.');
-              }).catch(e => console.error('Diagnostic Fetch Failed:', e));
+              }).catch((e: any) => console.error('Diagnostic Fetch Failed:', e));
             }}
             className="px-10 py-4 bg-white text-[#00A651] font-black rounded-2xl border-2 border-[#00A651] hover:bg-green-50 transition-all hover:scale-105 active:scale-95"
           >
@@ -1057,7 +1022,7 @@ const ListingGrid: React.FC<ListingGridProps> = ({ limit, agentId, title }) => {
             onClick={() => {
               console.log('Current Listings State:', listings);
               console.log('Current Filters State:', filters);
-              fetch('/api/listings').then(r => r.json()).then(d => console.log('Raw API Response:', d));
+              getListings({ data: {} }).then((d: any) => console.log('Raw API Response:', d));
             }}
             className="mt-4 text-xs text-gray-400 hover:underline block mx-auto"
           >

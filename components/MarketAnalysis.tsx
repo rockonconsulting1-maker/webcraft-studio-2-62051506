@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
+import { getMarketAnalysis } from '../lib/ddf.functions';
 import { 
   TrendingUp, 
   TrendingDown, 
@@ -105,9 +106,7 @@ const MarketAnalysis: React.FC = () => {
           }
         }
 
-        const response = await fetch('/api/market-analysis');
-        if (!response.ok) throw new Error('Failed to fetch market analysis');
-        const result: MarketAnalysisResponse = await response.json();
+        const result: MarketAnalysisResponse = await getMarketAnalysis();
 
         setAnalysis(result.data);
         setLastUpdated(result.timestamp);

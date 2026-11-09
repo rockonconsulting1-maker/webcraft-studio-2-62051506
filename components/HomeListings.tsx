@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Listing } from '../types';
 import { MapPin, Bed, Bath, Square, ExternalLink, Loader2, Info } from 'lucide-react';
+import { getListings } from '../lib/ddf.functions';
 
 // The homepage only shows listings from these two DDF agent IDs.
 const DDF_AGENT_IDS = ['2174069', '1424477'];
@@ -53,10 +54,7 @@ const HomeListings: React.FC<HomeListingsProps> = ({ limit = 6, title }) => {
     let cancelled = false;
 
     const fetchAgentListings = async (agentId: string): Promise<Listing[]> => {
-      const url = `/api/listings?agentId=${encodeURIComponent(agentId)}&top=${limit}`;
-      const res = await fetch(url);
-      if (!res.ok) throw new Error(`API Error: ${res.status} ${res.statusText}`);
-      const data = await res.json();
+      const data = await getListings({ data: { agentId, top: limit } });
       return (data.value || []).map(mapDDFToListing);
     };
 
