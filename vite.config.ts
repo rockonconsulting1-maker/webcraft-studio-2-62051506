@@ -2,6 +2,7 @@ import path from 'path';
 import { defineConfig, Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import { buildSync } from 'esbuild';
+import { ddfApiPlugin } from './vite-ddf-api-plugin';
 
 function buildServerPlugin(): Plugin {
   return {
@@ -31,10 +32,10 @@ function buildServerPlugin(): Plugin {
 export default defineConfig({
   server: {
     allowedHosts: true,
-    port: 3000,
+    port: 8080,
     host: '0.0.0.0',
   },
-  plugins: [react(), buildServerPlugin()],
+  plugins: [react(), buildServerPlugin(), ddfApiPlugin()],
   resolve: {
     alias: {
       '@': path.resolve(__dirname, '.'),
