@@ -1,13 +1,12 @@
 import { StartClient } from "@tanstack/react-start/client";
 import { StrictMode } from "react";
 import { hydrateRoot } from "react-dom/client";
-import { createRouter } from "./router";
 
-const router = createRouter();
-
+// StartClient resolves the router from the framework's router entry
+// (src/router.tsx -> getRouter), so it takes no props.
 hydrateRoot(
   document,
   <StrictMode>
-    <StartClient router={router} />
+    <StartClient />
   </StrictMode>,
 );

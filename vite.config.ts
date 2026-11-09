@@ -13,7 +13,26 @@ export default defineConfig({
     host: '0.0.0.0',
     allowedHosts: true,
   },
-  plugins: [tanstackStart(), react()],
+  plugins: [
+    tanstackStart({
+      // Path to the SSR server entry (valid option shape: start.entry).
+      start: {
+        entry: './src/entry-server.tsx',
+      },
+    }),
+    react(),
+  ],
+  // Give the SSR environment a dedicated non-HTML entry so Vite does not
+  // default the SSR build input to the root index.html.
+  environments: {
+    ssr: {
+      build: {
+        rollupOptions: {
+          input: path.resolve(__dirname, 'src/entry-server.tsx'),
+        },
+      },
+    },
+  },
   resolve: {
     alias: {
       '@': path.resolve(__dirname, '.'),
