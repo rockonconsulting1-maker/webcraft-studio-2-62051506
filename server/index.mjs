@@ -4,7 +4,6 @@ import { createRequire } from "module"; const require = createRequire(import.met
 import express from "express";
 import axios from "axios";
 import cookieParser from "cookie-parser";
-import { createServer as createViteServer } from "vite";
 import path from "path";
 import { fileURLToPath } from "url";
 import dns from "dns";
@@ -416,6 +415,7 @@ app.get("/api/market-analysis", (req, res) => {
 });
 async function startServer() {
   if (process.env.NODE_ENV !== "production") {
+    const { createServer: createViteServer } = await import("vite");
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: "spa"
