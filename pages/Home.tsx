@@ -3,7 +3,7 @@ import React from 'react';
 import { Page } from '../types';
 import SectionHeader from '../components/SectionHeader';
 import SavingsCalculator from '../components/SavingsCalculator';
-import ListingGrid from '../components/ListingGrid';
+import HomeListings from '../components/HomeListings';
 import MarketAnalysis from '../components/MarketAnalysis';
 import { TESTIMONIALS } from '../constants';
 import { ArrowRight, CheckCircle, Shield, TrendingUp, Star } from 'lucide-react';
@@ -140,7 +140,7 @@ const Home: React.FC<HomeProps> = ({ setPage }) => {
             </button>
           </div>
           
-          <ListingGrid limit={6} />
+          <HomeListings limit={6} />
         </div>
       </section>
 
