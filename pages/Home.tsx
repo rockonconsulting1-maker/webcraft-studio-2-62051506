@@ -4,7 +4,7 @@ import { Page } from '../types';
 import SectionHeader from '../components/SectionHeader';
 import SavingsCalculator from '../components/SavingsCalculator';
 import HomeListings from '../components/HomeListings';
-import MarketAnalysis from '../components/MarketAnalysis';
+import MarketAnalysisClient from '../components/MarketAnalysisClient';
 import { TESTIMONIALS } from '../constants';
 import { ArrowRight, CheckCircle, Shield, TrendingUp, Star } from 'lucide-react';
 
@@ -20,7 +20,7 @@ const Home: React.FC<HomeProps> = ({ setPage }) => {
         {/* Parallax Background */}
         <div 
           className="absolute inset-0 z-0 parallax scale-105"
-          style={{ backgroundImage: 'url("https://images.unsplash.com/photo-1544161515-4ad6ce6cd692?auto=format&fit=crop&q=80&w=2000")' }}
+          style={{ backgroundImage: 'url("https://vibe.filesafe.space/1793387525362051506/assets/3b4a57f1-2e42-4aaf-a3ec-b73406f46730.png")' }}
         >
           <div className="absolute inset-0 bg-gradient-to-r from-[#002366]/80 to-[#002366]/40"></div>
         </div>
@@ -109,7 +109,7 @@ const Home: React.FC<HomeProps> = ({ setPage }) => {
             title="Southern Alberta Market Insights" 
             subtitle="Stay informed with real-time market data across our key communities. Knowledge is power when making your next move."
           />
-          <MarketAnalysis />
+          <MarketAnalysisClient />
         </div>
       </section>
 
